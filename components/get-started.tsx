@@ -8,7 +8,9 @@ const GetStarted = () => {
   const { user } = useKindeBrowserClient();
   return user ? (
     <Link href="/map" className=" max-sm:w-full max-w-[400px]">
-      <Button className=" max-sm:w-full max-w-[400px]">Get Started</Button>
+      <Button className=" max-sm:w-full max-w-[400px] dark:bg-white dark:text-black bg-black text-white hover:bg-black/80  dark:hover:bg-white/80">
+        Get Started
+      </Button>
     </Link>
   ) : (
     <LoginLink>
