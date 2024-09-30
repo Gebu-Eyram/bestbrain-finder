@@ -7,7 +7,7 @@ import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 const GetStarted = () => {
   const { user } = useKindeBrowserClient();
   return user ? (
-    <Link href="/map">
+    <Link href="/map" className=" max-sm:w-full max-w-[400px]">
       <Button className=" max-sm:w-full max-w-[400px]">Get Started</Button>
     </Link>
   ) : (
