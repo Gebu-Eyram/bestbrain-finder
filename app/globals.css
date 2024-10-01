@@ -18,6 +18,7 @@
 
 .radar-arm {
   animation: rotate 2s linear infinite;
+  transform-origin: center;
 }
 
 @keyframes rotate {

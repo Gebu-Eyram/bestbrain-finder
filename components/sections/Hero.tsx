@@ -7,7 +7,10 @@ import GetStarted from "../get-started";
 
 const Hero = () => {
   return (
-    <section className="w-full pt-36 pb-6 sm:pb-10 md:pt-24 lg:pb-24 lg:pt-32 xl:pt-48 relative">
+    <section
+      id="Hero"
+      className="w-full pt-36 pb-6 sm:pb-10 md:pt-24 lg:pb-24 lg:pt-32 xl:pt-48 relative"
+    >
       <video
         src="/map-video.mp4"
         muted

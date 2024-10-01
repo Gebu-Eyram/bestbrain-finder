@@ -23,9 +23,9 @@ const Radar = () => {
           x2="-1.5700000524520874"
           y2="117.4219970703125"
         >
-          <stop offset="0%" stop-color="rgb(0,173,139)" />
-          <stop offset="20%" stop-color="rgb(9,96,79)" />
-          <stop offset="100%" stop-color="rgb(18,18,18)" />
+          <stop offset="0%" stopColor="rgb(0,173,139)" />
+          <stop offset="20%" stopColor="rgb(9,96,79)" />
+          <stop offset="100%" stopColor="rgb(18,18,18)" />
         </linearGradient>
         <mask id="mask">
           <path
@@ -42,20 +42,12 @@ const Radar = () => {
           x2="-1.5700000524520874"
           y2="117.4219970703125"
         >
-          <stop stop-color="rgb(255,255,255)" offset="0%" stop-opacity="1" />
-          <stop
-            stop-color="rgb(255,255,255)"
-            offset="50%"
-            stop-opacity="0.55"
-          />
-          <stop
-            stop-color="rgb(255,255,255)"
-            offset="100%"
-            stop-opacity="0.1"
-          />
+          <stop stopColor="rgb(255,255,255)" offset="0%" stopOpacity="1" />
+          <stop stopColor="rgb(255,255,255)" offset="50%" stopOpacity="0.55" />
+          <stop stopColor="rgb(255,255,255)" offset="100%" stopOpacity="0.1" />
         </linearGradient>
       </defs>
-      <g clip-path="url(#clipPath)">
+      <g clipPath="url(#clipPath)">
         {/* Radar Circles */}
         <g transform="translate(256, 256)">
           <circle
@@ -63,7 +55,7 @@ const Radar = () => {
             cy="0"
             r="180"
             stroke="rgb(44,44,44)"
-            stroke-width="2"
+            strokeWidth="2"
             fill="none"
           />
           <circle
@@ -71,7 +63,7 @@ const Radar = () => {
             cy="0"
             r="106"
             stroke="rgb(44,44,44)"
-            stroke-width="2"
+            strokeWidth="2"
             fill="none"
           />
           <circle
@@ -79,23 +71,19 @@ const Radar = () => {
             cy="0"
             r="245"
             stroke="rgb(44,44,44)"
-            stroke-width="2"
+            strokeWidth="2"
             fill="none"
           />
         </g>
         {/* Radar Arm */}
-        <g
-          className="radar-arm"
-          transform="rotate(0 256 256)"
-          transform-origin="center"
-        >
+        <g className="radar-arm" transform="rotate(0 256 256)">
           <line
             x1="256"
             y1="256"
             x2="256"
             y2="10"
             stroke="rgb(0,172,138)"
-            stroke-width="4"
+            strokeWidth="4"
           />
 
           <g transform="translate(380, 128)">
