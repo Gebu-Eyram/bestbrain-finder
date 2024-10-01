@@ -1,6 +1,6 @@
 "use client";
 
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { LogOut, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -58,13 +58,10 @@ const UserActions = () => {
   } else {
     return (
       <div>
-        <Link
-          href={"/api/auth/login"}
-          className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full"
-        >
-          <span>Login</span>
+        <div className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
+          <LoginLink>Login</LoginLink>
           <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
-        </Link>
+        </div>
       </div>
     );
   }
