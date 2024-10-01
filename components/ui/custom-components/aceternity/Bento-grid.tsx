@@ -305,7 +305,7 @@ const items = [
   {
     title: "Directions",
     description: (
-      <span className="text-sm">
+      <span className="text-sm font-mono">
         Get directions to your schools with Google powered navigation.
       </span>
     ),

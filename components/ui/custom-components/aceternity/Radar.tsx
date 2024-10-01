@@ -5,8 +5,8 @@ const Radar = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
-      width="269"
-      height="269"
+      width="100"
+      height="100"
       preserveAspectRatio="xMidYMid meet"
       className="w-full h-full translate3d(0px, 0px, 0px) bg-transparent"
     >
@@ -24,8 +24,8 @@ const Radar = () => {
           y2="117.4219970703125"
         >
           <stop offset="0%" stopColor="rgb(0,173,139)" />
-          <stop offset="20%" stopColor="rgb(9,96,79)" />
-          <stop offset="100%" stopColor="rgb(18,18,18)" />
+          <stop offset="20%" stopColor="rgba(0,173,139,0.7)" />
+          <stop offset="100%" stopColor="rgba(0,173,139,0.2)" />
         </linearGradient>
         <mask id="mask">
           <path
