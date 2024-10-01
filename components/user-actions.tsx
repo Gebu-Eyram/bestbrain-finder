@@ -12,16 +12,22 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { useEffect, useState } from "react";
 
 const UserActions = () => {
+  const [currentUser, setCurrentUser] = useState(null);
   const { user } = useKindeBrowserClient();
+  useEffect(() => {
+    //@ts-ignore
+    user && setCurrentUser(user);
+  }, [user]);
   if (user) {
     return (
       <div>
         <DropdownMenu>
           <DropdownMenuTrigger className="outline-none">
             <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white p-1 rounded-full">
-              {user ? (
+              {currentUser ? (
                 <Image
                   src={user.picture!}
                   alt="user"
