@@ -1,7 +1,7 @@
 "use client";
 
 import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-import { LogOut, User } from "lucide-react";
+import { LogOut, MapIcon, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -51,6 +51,11 @@ const UserActions = () => {
               </span>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
+            <Link href="/map" className="cursor-pointer">
+              <DropdownMenuItem className="flex gap-2 cursor-pointer">
+                <MapIcon className="w-4 h-4" /> <span>Map</span>
+              </DropdownMenuItem>
+            </Link>
 
             <Link href="/api/auth/logout" className="cursor-pointer">
               <DropdownMenuItem className="flex gap-2 cursor-pointer">

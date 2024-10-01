@@ -1,21 +1,19 @@
 "use client";
-import Link from "next/link";
+
 import React from "react";
 import { Button } from "./ui/button";
-import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import Link from "next/link";
 
 const GetStarted = () => {
   const { user } = useKindeBrowserClient();
-  return user ? (
-    <Link href="/map" className=" max-sm:w-full max-w-[400px]">
-      <Button className=" max-sm:w-full max-w-[400px] dark:bg-white dark:text-black bg-black text-white hover:bg-black/80  dark:hover:bg-white/80">
-        Get Started
-      </Button>
-    </Link>
-  ) : (
-    <LoginLink>
+  return (
+    <Link
+      href={user ? "/map" : "/api/auth/login"}
+      className=" max-sm:w-full max-w-[400px]"
+    >
       <Button className=" max-sm:w-full max-w-[400px]">Get Started</Button>
-    </LoginLink>
+    </Link>
   );
 };
 

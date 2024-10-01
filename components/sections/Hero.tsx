@@ -2,11 +2,12 @@ import React from "react";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { LoginLink } from "@kinde-oss/kinde-auth-nextjs";
 import GetStarted from "../get-started";
 
 const Hero = () => {
   return (
-    <section className="w-full py-36 md:py-24 lg:py-32 xl:py-48 relative">
+    <section className="w-full pt-36 pb-6 sm:pb-10 md:pt-24 lg:pb-24 lg:pt-32 xl:pt-48 relative">
       <video
         src="/map-video.mp4"
         muted
@@ -28,9 +29,11 @@ const Hero = () => {
         </div>
         <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-2 mt-4 sm:mt-6 lg:mt-8 ">
           <GetStarted />
-          <Button variant={"outline"} className=" max-sm:w-full max-w-[400px]">
-            Learn More
-          </Button>
+          <Link href={"/#features"} className="max-sm:w-full max-w-[400px]">
+            <Button variant={"outline"} className=" max-sm:w-full ">
+              Learn More
+            </Button>
+          </Link>
         </div>
       </div>
       <div className="absolute w-full -z-10 h-40 bg-gradient-to-b bottom-0 from-transparent  to-background" />

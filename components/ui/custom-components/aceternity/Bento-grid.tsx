@@ -18,9 +18,18 @@ import { LayoutIcon, School } from "lucide-react";
 import { BentoAvatar } from "../../avatar-demo";
 import { CardSkeleton } from "./DamnGoodCard";
 
-export function BentoGridThirdDemo() {
+export function Features() {
   return (
-    <section id="featuresS">
+    <section id="features" className="py-4 sm:py-8">
+      <div className="p-4 w-full max-w-6xl mx-auto flex flex-col gap-2">
+        <h2 className="text-2xl sm:text-3xl font-mono   font-extrabold text-neutral-900 dark:text-neutral-200">
+          Amazing features just for you!
+        </h2>
+        <p className="max-sm:text-sm text-gray-500  dark:text-gray-400">
+          Here are some of the amazing features we offer to make your experience
+          better.
+        </p>
+      </div>
       <BentoGrid className="max-w-6xl p-2 sm:p-4 pb-8  mx-auto md:auto-rows-[20rem]">
         {items.map((item, i) => (
           <BentoGridItem
@@ -67,7 +76,7 @@ const SkeletonOne = () => {
     <motion.div
       initial="initial"
       whileHover="animate"
-      className="flex flex-1 w-full h-full min-h-[6rem] dark:bg-dot-white/[0.2] bg-dot-black/[0.2] flex-col space-y-2"
+      className="flex flex-1 w-full h-full min-h-[6rem] dark:bg-dot-white/[0.2] bg-dot-black/[0.2] flex-col space-y-2 [mask-image:radial-gradient(ellipse_at_center,white,white,transparent)]"
     >
       <motion.div
         variants={variants}
@@ -93,45 +102,7 @@ const SkeletonOne = () => {
     </motion.div>
   );
 };
-const SkeletonTwo = () => {
-  const variants = {
-    initial: {
-      width: 0,
-    },
-    animate: {
-      width: "100%",
-      transition: {
-        duration: 0.2,
-      },
-    },
-    hover: {
-      width: ["0%", "100%"],
-      transition: {
-        duration: 2,
-      },
-    },
-  };
-  const arr = new Array(6).fill(0);
-  return (
-    <motion.div
-      initial="initial"
-      animate="animate"
-      whileHover="hover"
-      className="flex flex-1 w-full h-full min-h-[6rem] dark:bg-dot-white/[0.2] bg-dot-black/[0.2] flex-col space-y-2"
-    >
-      {arr.map((_, i) => (
-        <motion.div
-          key={"skelenton-two" + i}
-          variants={variants}
-          style={{
-            maxWidth: Math.random() * (100 - 40) + 40 + "%",
-          }}
-          className="flex flex-row rounded-full border border-neutral-100 dark:border-white/[0.2] p-2  items-center space-x-2 bg-neutral-100 dark:bg-black w-full h-4"
-        ></motion.div>
-      ))}
-    </motion.div>
-  );
-};
+
 const SkeletonThree = () => {
   const variants = {
     initial: {
