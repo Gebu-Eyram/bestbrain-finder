@@ -11,7 +11,6 @@ import React from "react";
 const page = () => {
   return (
     <div className="relative">
-      <FloatingNavDemo />
       <Hero />
       <BentoGridThirdDemo />
     </div>

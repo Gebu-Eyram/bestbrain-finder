@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { FloatingNavDemo } from "@/components/ui/custom-components/aceternity/Navbar";
 
 export const metadata: Metadata = {
   title: "BestBrain - Schools Finder",
@@ -22,6 +23,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <FloatingNavDemo />
           {children}
         </ThemeProvider>
       </body>
