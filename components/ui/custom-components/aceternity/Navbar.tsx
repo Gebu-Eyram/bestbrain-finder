@@ -6,11 +6,6 @@ import { SparklesIcon } from "lucide-react";
 export function FloatingNavDemo() {
   const navItems = [
     {
-      name: "Home",
-      link: "/",
-      icon: <IconHome className="h-6 w-6 text-neutral-500 dark:text-white" />,
-    },
-    {
       name: "Features",
       link: "/#features",
       icon: (

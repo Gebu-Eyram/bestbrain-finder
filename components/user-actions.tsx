@@ -1,7 +1,7 @@
 "use client";
 
 import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-import { LogOut, MapIcon, User } from "lucide-react";
+import { LogIn, LogOut, MapIcon, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -26,14 +26,14 @@ const UserActions = () => {
       <div>
         <DropdownMenu>
           <DropdownMenuTrigger className="outline-none">
-            <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white p-1 rounded-full">
+            <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] p-px text-black dark:text-white rounded-full">
               {currentUser ? (
                 <Image
                   src={user.picture!}
                   alt="user"
                   width={24}
                   height={24}
-                  className="rounded-full"
+                  className="rounded-full h-8 w-8"
                 />
               ) : (
                 <User h-6 w-6 />
@@ -69,8 +69,11 @@ const UserActions = () => {
   } else {
     return (
       <div>
-        <div className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
-          <LoginLink>Login</LoginLink>
+        <div className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white  p-2 sm:px-4 rounded-full">
+          <LoginLink>
+            <span className="max-sm:hidden ">Login</span>
+            <LogIn className="w-4 h-4 sm:hidden" />
+          </LoginLink>
           <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
         </div>
       </div>

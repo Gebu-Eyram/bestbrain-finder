@@ -12,7 +12,9 @@ const page = () => {
   return (
     <div className="relative">
       <FloatingNavDemo />
-      <Hero />
+      <div className="p-2">
+        <Hero />
+      </div>
       <Features />
     </div>
   );

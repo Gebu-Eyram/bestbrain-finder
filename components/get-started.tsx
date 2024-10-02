@@ -12,7 +12,9 @@ const GetStarted = () => {
       href={user ? "/map" : "/api/auth/login"}
       className=" max-sm:w-full max-w-[400px]"
     >
-      <Button className=" max-sm:w-full max-w-[400px]">Get Started</Button>
+      <Button className=" max-sm:w-full max-w-[400px]">
+        {user ? "Go to Map" : "Get Started"}
+      </Button>
     </Link>
   );
 };

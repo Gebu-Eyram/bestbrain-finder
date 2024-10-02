@@ -68,7 +68,7 @@ export const FloatingNav = ({
             src="/logo.svg"
             width={30}
             height={30}
-            className=" w-6 h-6 sm:w-[30px] sm:h-[30px] cursor-pointer"
+            className=" w-6 h-6 min-h-6 min-w-6 sm:w-[30px] sm:h-[30px] cursor-pointer"
             alt="logo"
           />
         </Link>
@@ -78,7 +78,7 @@ export const FloatingNav = ({
             key={`link=${idx}`}
             href={navItem.link}
             className={cn(
-              "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
+              "relative dark:text-neutral-50 items-center flex space-x-1"
             )}
           >
             <span className="block sm:hidden">{navItem.icon}</span>
