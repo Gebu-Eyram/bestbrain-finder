@@ -49,6 +49,7 @@ import UserActions from "../user-actions";
 import Image from "next/image";
 import Link from "next/link";
 import { ModeToggle } from "../mode-toggle";
+import MapComponent from "./MapComponent";
 
 export function MapPage() {
   return (
@@ -182,33 +183,8 @@ export function MapPage() {
               </fieldset>
             </div>
           </div>
-          <div className="relative flex h-full min-h-[50vh] flex-col lg:rounded-xl bg-muted/50 p-4 lg:col-span-2">
-            <Badge variant="outline" className="absolute right-3 top-3">
-              Map
-            </Badge>
-            <div className="flex-1" />
-            <div
-              className="relative bg-background focus-within:ring-1 focus-within:ring-ring"
-              x-chunk="dashboard-03-chunk-1"
-            >
-              <div className="flex items-center p-3 pt-0">
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button variant="ghost" size="icon">
-                        <Paperclip className="size-4" />
-                        <span className="sr-only">Attach file</span>
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent side="top">Attach File</TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-                <Button type="submit" size="sm" className="ml-auto gap-1.5">
-                  Send Message
-                  <CornerDownLeft className="size-3.5" />
-                </Button>
-              </div>
-            </div>
+          <div className="relative flex h-full min-h-[50vh] flex-col lg:rounded-xl bg-muted/50  lg:col-span-2">
+            <MapComponent />
           </div>
         </main>
       </div>
