@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs";
 import GetStarted from "../get-started";
+import { HeroHighlight } from "../ui/hero-highlight";
 
 const Hero = () => {
   return (
@@ -25,7 +26,7 @@ const Hero = () => {
           </div>
         </div>
         <div className="text-center flex flex-col items-center">
-          <h1 className="text-4xl max-sm:max-w-md font-bold tracking-tight sm:text-6xl">
+          <h1 className="text-4xl max-sm:max-w-md font-bold tracking-tight sm:text-6xl font-[family-name:var(--font-sora  )]">
             Uncover the schools within your reach.
           </h1>
           <p className="mt-6 text-lg max-sm:max-w-sm leading-8 text-center w-full text-muted-foreground">

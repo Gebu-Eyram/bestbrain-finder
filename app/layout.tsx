@@ -2,12 +2,21 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { FloatingNavDemo } from "@/components/ui/custom-components/aceternity/Navbar";
+import localFont from "next/font/local";
 
 export const metadata: Metadata = {
   title: "BestBrain - Schools Finder",
   description: "A map of schools around you!",
 };
+
+const inter = localFont({
+  src: "./fonts/Inter.ttf",
+  variable: "--font-inter",
+});
+const sora = localFont({
+  src: "./fonts/Sora.ttf",
+  variable: "--font-sora",
+});
 
 export default function RootLayout({
   children,
@@ -16,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={` ${inter.variable} ${sora.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

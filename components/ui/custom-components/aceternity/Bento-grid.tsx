@@ -29,9 +29,10 @@ export function Features() {
   return (
     <section id="features" className="py-4 sm:py-8">
       <div className="p-4 w-full max-w-6xl mx-auto flex flex-col gap-2">
-        <h2 className="text-2xl sm:text-3xl font-mono   font-extrabold text-neutral-900 dark:text-neutral-200">
+        <h2 className="text-2xl sm:text-3xl   font-[family-name:var(--font-sora)] font-bold text-neutral-900 dark:text-neutral-200">
           Amazing features just for you!
         </h2>
+
         <p className="max-sm:text-sm text-gray-500  dark:text-gray-400">
           Here are some of the amazing features we offer to make your experience
           better.

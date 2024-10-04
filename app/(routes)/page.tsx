@@ -1,4 +1,6 @@
+import Footer from "@/components/sections/Footer";
 import Hero from "@/components/sections/Hero";
+import PricingSection from "@/components/sections/PricingSection";
 import { BentoGrid } from "@/components/ui/bento-grid";
 import { Button } from "@/components/ui/button";
 import { Features } from "@/components/ui/custom-components/aceternity/Bento-grid";
@@ -16,6 +18,8 @@ const page = () => {
         <Hero />
       </div>
       <Features />
+      <PricingSection />
+      <Footer />
     </div>
   );
 };
