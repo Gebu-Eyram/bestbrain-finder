@@ -1,3 +1,4 @@
+import CTA from "@/components/sections/CTA";
 import Footer from "@/components/sections/Footer";
 import Hero from "@/components/sections/Hero";
 import PricingSection from "@/components/sections/PricingSection";
@@ -19,6 +20,7 @@ const page = () => {
       </div>
       <Features />
       <PricingSection />
+      <CTA />
       <Footer />
     </div>
   );

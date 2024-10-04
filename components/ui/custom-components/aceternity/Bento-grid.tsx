@@ -24,32 +24,52 @@ import {
 import { BentoAvatar } from "../../avatar-demo";
 import { CardSkeleton } from "./DamnGoodCard";
 import Radar from "./Radar";
+import { InView } from "@/components/core/InView";
 
 export function Features() {
   return (
     <section id="features" className="py-4 sm:py-8">
-      <div className="p-4 w-full max-w-6xl mx-auto flex flex-col gap-2">
-        <h2 className="text-2xl sm:text-3xl   font-[family-name:var(--font-sora)] font-bold text-neutral-900 dark:text-neutral-200">
-          Amazing features just for you!
-        </h2>
+      <InView
+        variants={{
+          hidden: {
+            opacity: 0,
+            y: 30,
+            scale: 0.95,
+            filter: "blur(4px)",
+          },
+          visible: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: "blur(0px)",
+          },
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        viewOptions={{ margin: "0px 0px -350px 0px" }}
+      >
+        <div className="p-4 w-full max-w-6xl mx-auto flex flex-col gap-2">
+          <h2 className="text-2xl sm:text-3xl   font-[family-name:var(--font-sora)] font-bold text-neutral-900 dark:text-neutral-200">
+            Amazing features just for you!
+          </h2>
 
-        <p className="max-sm:text-sm text-gray-500  dark:text-gray-400">
-          Here are some of the amazing features we offer to make your experience
-          better.
-        </p>
-      </div>
-      <BentoGrid className="max-w-6xl p-2 sm:p-4 pb-8  mx-auto md:auto-rows-[20rem]">
-        {items.map((item, i) => (
-          <BentoGridItem
-            key={i}
-            title={item.title}
-            description={item.description}
-            header={item.header}
-            className={cn("[&>p:text-lg]", item.className)}
-            icon={item.icon}
-          />
-        ))}
-      </BentoGrid>
+          <p className="max-sm:text-sm text-gray-500  dark:text-gray-400">
+            Here are some of the amazing features we offer to make your
+            experience better.
+          </p>
+        </div>
+        <BentoGrid className="max-w-6xl p-2 sm:p-4 pb-8  mx-auto md:auto-rows-[20rem]">
+          {items.map((item, i) => (
+            <BentoGridItem
+              key={i}
+              title={item.title}
+              description={item.description}
+              header={item.header}
+              className={cn("[&>p:text-lg]", item.className)}
+              icon={item.icon}
+            />
+          ))}
+        </BentoGrid>
+      </InView>
     </section>
   );
 }
