@@ -26,11 +26,12 @@ const PricingSection = () => {
       >
         <div className="px-2 py-16 mx-auto md:px-12 lg:px-24 max-w-screen-xl relative">
           <div className="max-w-xl text-center mx-auto">
-            <span className="font-mono text-xs font-medium tracking-tight text-accent-600 uppercase">
+            <span className="font-mono text-xs text-indigo-700 font-medium tracking-tight text-accent-600 uppercase">
               PRICING
             </span>
             <p className="text-4xl mt-4 font-semibold tracking-tight font-[family-name:var(--font-sora)] text-base-900 lg:text-balance">
-              Equip your business with world class tools
+              Equip your <span className="text-indigo-500">business</span> with
+              <span className="text-indigo-500"> world class</span> tools
             </p>
           </div>
           <div className="flex  flex-col gap-4 mt-12 sm:flex-row items-center justify-center  mx-auto">
@@ -38,7 +39,6 @@ const PricingSection = () => {
               <div className="">
                 <div className="flex flex-col p-8 border shadow rounded-[1.3rem]">
                   <span className="text-xl text-base-900  font-[family-name:var(--font-sora)] font-medium">
-                    {" "}
                     Free{" "}
                   </span>
                   <p className="text-sm text-base-500 mt-2">
