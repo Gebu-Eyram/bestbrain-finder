@@ -5,6 +5,7 @@ import PricingSection from "@/components/sections/PricingSection";
 import { BentoGrid } from "@/components/ui/bento-grid";
 import { Button } from "@/components/ui/button";
 import { Features } from "@/components/ui/custom-components/aceternity/Bento-grid";
+import { CardStackDemo } from "@/components/ui/custom-components/aceternity/CardStack";
 import { FloatingNavDemo } from "@/components/ui/custom-components/aceternity/Navbar";
 import { TextHoverEffect } from "@/components/ui/custom-components/aceternity/TextHoverEffect";
 import { Input } from "@/components/ui/input";
@@ -19,7 +20,9 @@ const page = () => {
         <Hero />
       </div>
       <Features />
+      <CardStackDemo />
       <PricingSection />
+
       <CTA />
       <Footer />
     </div>

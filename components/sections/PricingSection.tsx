@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { InView } from "../core/InView";
+import { CardSpotlight1 } from "../ui/custom-components/aceternity/CardSpotlightDemo";
 
 const PricingSection = () => {
   return (
@@ -26,7 +27,7 @@ const PricingSection = () => {
       >
         <div className="px-2 py-16 mx-auto md:px-12 lg:px-24 max-w-screen-xl relative">
           <div className="max-w-xl text-center mx-auto">
-            <span className="font-mono text-xs text-indigo-700 font-medium tracking-tight text-accent-600 uppercase">
+            <span className="font-mono text-xs text-muted-foreground font-medium tracking-tight text-accent-600 uppercase">
               PRICING
             </span>
             <p className="text-4xl mt-4 font-semibold tracking-tight font-[family-name:var(--font-sora)] text-base-900 lg:text-balance">
@@ -35,7 +36,7 @@ const PricingSection = () => {
             </p>
           </div>
           <div className="flex  flex-col gap-4 mt-12 sm:flex-row items-center justify-center  mx-auto">
-            <div className="flex flex-col max-w-sm h-full  justify-between p-1 border bg-base-50 rounded-3xl shadow">
+            {/* <div className="flex flex-col max-w-sm h-full  justify-between p-1 border bg-base-50 rounded-3xl shadow">
               <div className="">
                 <div className="flex flex-col p-8 border shadow rounded-[1.3rem]">
                   <span className="text-xl text-base-900  font-[family-name:var(--font-sora)] font-medium">
@@ -60,7 +61,8 @@ const PricingSection = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
+            <CardSpotlight1 />
             {/* <!-- Tier 2 --> */}
             <div className="flex h-full border max-w-sm justify-between flex-col bg-muted/30 p-1 rounded-3xl bg-base-900 shadow">
               <div>

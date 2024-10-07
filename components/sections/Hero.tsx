@@ -18,7 +18,7 @@ const Hero = () => {
       />
       <div className="absolute  pointer-events-none inset-0 flex items-center justify-center dark:bg-background bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black)] -z-10" />
 
-      <div className="mx-auto max-w-2xl lg:pb-16 pt-32 sm:pt-48 lg:pt-56">
+      <div className=" header mx-auto max-w-2xl lg:pb-16 pt-32 sm:pt-48 lg:pt-56">
         <div className="hidden sm:mb-8 sm:flex sm:justify-center">
           <div className="relative rounded-full px-3 py-1 text-sm leading-6 border cursor-pointer">
             School finding made easy by{" "}
@@ -35,7 +35,7 @@ const Hero = () => {
               within your reach.
             </h1>
           </div>
-          <p className="mt-6 text-lg max-sm:max-w-sm leading-8 text-center w-full text-muted-foreground">
+          <p className="mt-6 text-lg  max-sm:max-w-sm leading-8 text-center w-full text-muted-foreground">
             Tired of searching for schools one by one? This app makes it easy to
             discover the schools in your area.
           </p>
