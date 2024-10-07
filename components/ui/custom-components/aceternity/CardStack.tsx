@@ -49,7 +49,7 @@ export const Highlight = ({
 const CARDS = [
   {
     id: 0,
-    name: "Bestbrain App User",
+    name: "Kwame Adu",
     designation: "Accra, Ghana",
     content: (
       <p>
@@ -61,13 +61,25 @@ const CARDS = [
   },
   {
     id: 1,
-    name: "Bestbrain App User",
+    name: "Kpodo Mawunyo",
     designation: "Kumasi, Ghana",
     content: (
       <p>
         What I love about this <Highlight>map app</Highlight> by Bestbrain is
         the ability to locate schools and get directions in the easiest way
         possible.
+      </p>
+    ),
+  },
+  {
+    id: 3,
+    name: "Gebu Eyram Henry",
+    designation: "Bestbrain User, Takoradi",
+    content: (
+      <p>
+        I am very impressed with the user experience of the Bestbrain app. It is
+        very easy to use and navigate. This is a{" "}
+        <Highlight>very great </Highlight> company.{" "}
       </p>
     ),
   },
