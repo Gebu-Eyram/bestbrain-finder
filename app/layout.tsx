@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { Sora } from "next/font/google";
+
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import localFont from "next/font/local";
@@ -8,15 +10,7 @@ export const metadata: Metadata = {
   title: "BestBrain - Schools Finder",
   description: "A map of schools around you!",
 };
-
-const inter = localFont({
-  src: "./fonts/Inter.ttf",
-  variable: "--font-inter",
-});
-const sora = localFont({
-  src: "./fonts/Sora.ttf",
-  variable: "--font-sora",
-});
+const sora = Sora({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -25,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={` ${inter.variable} ${sora.variable}`}>
+      <body className={`${sora.className} `}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

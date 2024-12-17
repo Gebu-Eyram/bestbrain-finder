@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { useEffect, useState } from "react";
+import { DashboardIcon } from "@radix-ui/react-icons";
 
 const UserActions = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -46,14 +47,16 @@ const UserActions = () => {
               <span>
                 {user?.family_name} {user?.given_name}
               </span>
-              <span className="line-clamp-1 w-full text-xs font-light max-w-[130px]">
-                {user.email}
-              </span>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <Link href="/map" className="cursor-pointer">
               <DropdownMenuItem className="flex gap-2 cursor-pointer">
                 <MapIcon className="w-4 h-4" /> <span>Map</span>
+              </DropdownMenuItem>
+            </Link>
+            <Link href="/dashboard" className="cursor-pointer">
+              <DropdownMenuItem className="flex gap-2 cursor-pointer">
+                <DashboardIcon className="w-4 h-4" /> <span>Dashboard</span>
               </DropdownMenuItem>
             </Link>
 

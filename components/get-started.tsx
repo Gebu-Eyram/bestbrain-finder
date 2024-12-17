@@ -19,4 +19,18 @@ const GetStarted = ({ className }: { className?: string }) => {
   );
 };
 
+export const ToDashboard = ({ className }: { className?: string }) => {
+  const { user } = useKindeBrowserClient();
+  return (
+    <Link
+      href={user ? "/dashboard" : "/api/auth/login"}
+      className={" max-sm:w-full max-w-[400px]" + className}
+    >
+      <Button variant="outline" className=" max-sm:w-full max-w-[400px]">
+        Dashboard
+      </Button>
+    </Link>
+  );
+};
+
 export default GetStarted;

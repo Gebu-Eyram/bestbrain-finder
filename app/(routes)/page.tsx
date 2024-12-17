@@ -19,12 +19,12 @@ const page = () => {
       <div className="p-2">
         <Hero />
       </div>
-      <Features />
-      <CardStackDemo />
-      <PricingSection />
+        {/* <Features />
+        <CardStackDemo />
+        <PricingSection />
 
-      <CTA />
-      <Footer />
+        <CTA />
+        <Footer /> */}
     </div>
   );
 };

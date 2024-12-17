@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs";
-import GetStarted from "../get-started";
+import GetStarted, { ToDashboard } from "../get-started";
 import { HeroHighlight } from "../ui/hero-highlight";
 
 const Hero = () => {
@@ -29,7 +29,7 @@ const Hero = () => {
           <div className="text-4xl max-sm:max-w-md font-bold tracking-tight sm:text-6xl font-[family-name:var(--font-sora  )]">
             <h1 className="block font-[family-name:var(--font-sora)]">
               {" "}
-              Uncover the <span className="text-indigo-500">schools</span>
+              Discover the <span className="text-indigo-500">schools</span>
             </h1>{" "}
             <h1 className="block font-[family-name:var(--font-sora)]">
               within your reach.
@@ -42,11 +42,7 @@ const Hero = () => {
 
           <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-2 mt-4 sm:mt-6 lg:mt-8 ">
             <GetStarted />
-            <Link href={"/#features"} className="max-sm:w-full max-w-[400px]">
-              <Button variant={"outline"} className=" max-sm:w-full ">
-                Learn More
-              </Button>
-            </Link>
+            <ToDashboard />
           </div>
         </div>
       </div>
