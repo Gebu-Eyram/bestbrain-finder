@@ -6,6 +6,7 @@ import {
   useJsApiLoader,
   LoadScript,
   MarkerF,
+  OverlayView,
 } from "@react-google-maps/api";
 import { LoaderIcon, MapPin, Settings2 } from "lucide-react";
 import { Button } from "../ui/button";
@@ -19,13 +20,21 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "../ui/input";
 import axios from "axios";
+import SchoolCard from "./SchoolCard";
 
 const containerStyle = {
   width: "100%",
   height: "100%",
 };
 
-const MapComponent = () => {
+interface Props {
+  places: any;
+  setRange: any;
+  range: any;
+}
+
+const MapComponent = ({ places, setRange, range }: Props) => {
+  const [activePlace, setActivePlace] = React.useState();
   const [location, setLocation] = React.useState({ lat: 0, lng: 0 });
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -39,31 +48,8 @@ const MapComponent = () => {
   useEffect(() => {
     console.log(location);
   }, [location]);
-  const [range, setRange] = React.useState(100);
+
   const [open, setOpen] = React.useState(false);
-  const [places, setPlaces] = React.useState([]);
-
-  const GetPlaces = async () => {
-    try {
-      const response = await axios.get<{ result: any }>(
-        `/api/google-place?radius=${range / 1000}&lat=${location.lat}&lng=${
-          location.lng
-        }`
-      );
-      //@ts-ignore
-      setPlaces(response.data.results);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      GetPlaces();
-    }, 2000);
-
-    return () => clearTimeout(timeoutId);
-  }, [range]);
 
   useEffect(() => {
     console.log(places);
@@ -80,8 +66,8 @@ const MapComponent = () => {
               <input
                 className="w-full my-4"
                 type="range"
-                value={range}
                 onChange={(e) => setRange(parseInt(e.target.value))}
+                value={range}
                 min={0}
                 step={100}
                 max={5000}
@@ -147,17 +133,31 @@ const MapComponent = () => {
             }}
           />
 
-          {places.map((place, index) => (
+          {places.map((place: any, index: number) => (
             <MarkerF
               key={index}
               // @ts-ignore
               position={place.geometry.location}
+              onClick={() => setActivePlace(place)}
               icon={{
                 url: "/school.png",
                 //@ts-ignore
                 scaledSize: { width: 25, height: 25 },
               }}
-            />
+            >
+              <OverlayView
+                position={place.geometry.location}
+                mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+              >
+                <div
+                  className={`ml-[-90px] mt-[-270px] ${
+                    place === activePlace ? "" : "hidden"
+                  }`}
+                >
+                  <SchoolCard place={place} />
+                </div>
+              </OverlayView>
+            </MarkerF>
           ))}
         </GoogleMap>
       </LoadScript>

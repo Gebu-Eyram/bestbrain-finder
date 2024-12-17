@@ -5,6 +5,7 @@ const nextConfig = {
       "assets.aceternity.com",
       "lh3.googleusercontent.com",
       "pbs.twimg.com",
+      "maps.gstatic.com",
     ],
   },
 };

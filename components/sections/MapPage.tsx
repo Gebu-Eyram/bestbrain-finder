@@ -1,3 +1,4 @@
+"use client";
 import {
   Drawer,
   DrawerContent,
@@ -30,8 +31,48 @@ import Image from "next/image";
 import Link from "next/link";
 import { ModeToggle } from "../mode-toggle";
 import MapComponent from "./MapComponent";
+import React, { useEffect } from "react";
+import axios from "axios";
+import SchoolsList from "./SchoolsList";
 
 export function MapPage() {
+  const [places, setPlaces] = React.useState([]);
+  const [range, setRange] = React.useState(100);
+
+  const [location, setLocation] = React.useState({ lat: 0, lng: 0 });
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLocation({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      GetPlaces();
+    }, 2000);
+
+    return () => clearTimeout(timeoutId);
+  }, [range]);
+
+  useEffect(() => {});
+  const GetPlaces = async () => {
+    try {
+      const response = await axios.get<{ result: any }>(
+        `/api/google-place?radius=${range / 1000}&lat=${location.lat}&lng=${
+          location.lng
+        }`
+      );
+      //@ts-ignore
+      setPlaces(response.data.results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="grid h-screen w-full">
       <div className="flex flex-col">
@@ -52,11 +93,18 @@ export function MapPage() {
             <UserActions />
           </div>
         </header>
-        <main className="grid flex-1 gap-4 overflow-auto lg:p-4   ">
-          <div className="relative flex h-full min-h-[50vh] flex-col lg:rounded-xl bg-muted/50  ">
-            <MapComponent />
+        <div className="grid lg:grid-cols-[300px_1fr] h-full">
+          <div className="max-h-screen max-lg:hidden">
+            <SchoolsList places={places} />
           </div>
-        </main>
+          <div className="relative  flex h-full min-h-[50vh]  flex-col lg:rounded-xl bg-muted/50  ">
+            <MapComponent
+              places={places}
+              range={range}
+              setRange={(value: any) => setRange(value)}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
