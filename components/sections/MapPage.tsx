@@ -87,7 +87,7 @@ export function MapPage() {
             />
             <h1 className="max-sm:hidden">Bestbrain</h1>
           </Link>
-          <DrawerForMap />
+          <DrawerForMap places={places} />
           <div className="ml-auto flex gap-2 items-center">
             <ModeToggle />
             <UserActions />
