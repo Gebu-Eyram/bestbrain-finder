@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
@@ -21,6 +21,7 @@ import {
 import { Input } from "../ui/input";
 import axios from "axios";
 import SchoolCard from "./SchoolCard";
+import { UserLocationContext } from "@/app/(context)/UserLocationContext";
 
 const containerStyle = {
   width: "100%",
@@ -36,6 +37,18 @@ interface Props {
 const MapComponent = ({ places, setRange, range }: Props) => {
   const [activePlace, setActivePlace] = React.useState();
   const [location, setLocation] = React.useState({ lat: 0, lng: 0 });
+  const { userLocation, setUserLocation } = useContext(UserLocationContext);
+
+  useEffect(() => {
+    if (location.lat !== 0 && location.lng !== 0) {
+      setUserLocation(location);
+    }
+  }, [location]);
+
+  useEffect(() => {
+    console.log("User location", userLocation);
+  }, [userLocation]);
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       setLocation({

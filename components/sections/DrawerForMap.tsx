@@ -34,7 +34,6 @@ const DrawerForMap = ({ places }: { places: any }) => {
       <SheetContent className="h-screen overflow-y-auto px-0">
         <SheetHeader>
           <SheetTitle>Schools around you</SheetTitle>
-
           <ScrollArea className="w-full h-full py-4 pb-8 px-2  lg:max-h-[calc(90vh-10px)]">
             {places.length > 0 &&
               places.map((place: any, index: number) => (
