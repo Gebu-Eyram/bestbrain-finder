@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs";
-import GetStarted, { ToDashboard } from "../get-started";
+import GetStarted, { ToRegister } from "../get-started";
 import { HeroHighlight } from "../ui/hero-highlight";
 
 const Hero = () => {
@@ -41,7 +41,7 @@ const Hero = () => {
 
           <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-2 mt-4 sm:mt-6 lg:mt-8 ">
             <GetStarted />
-            {/* <ToDashboard /> */}
+            <ToRegister />
           </div>
         </div>
       </div>
