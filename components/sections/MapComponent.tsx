@@ -58,15 +58,7 @@ const MapComponent = ({ places, setRange, range }: Props) => {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
-
   const [open, setOpen] = React.useState(false);
-
-  useEffect(() => {
-    console.log(places);
-  }, [places]);
 
   return (
     <div className="w-full h-full rounded-t-lg relative">

@@ -16,11 +16,11 @@ const Hero = () => {
         autoPlay
         className=" absolute inset-0 -z-10 opacity-10 dark:opacity-20 bg-transparent w-full h-full pointer-events-none object-fill "
       />
-      <div className="absolute  pointer-events-none inset-0 flex items-center justify-center dark:bg-background bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black)] -z-10" />
+      <div className="absolute h-screen  pointer-events-none inset-0 flex items-center justify-center dark:bg-background bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black)] -z-10" />
 
-      <div className=" header mx-auto max-w-2xl lg:pb-16 pt-32 sm:pt-48 lg:pt-56">
-        <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-          <div className="relative rounded-full px-3 py-1 text-sm leading-6 border cursor-pointer">
+      <div className=" header mx-auto max-w-2xl h-full lg:pb-16 pt-32 sm:pt-48 lg:pt-56">
+        <div className="hidden sm:mb-8 sm:flex items-center sm:justify-center">
+          <div className="relative rounded-full mt-auto px-3 py-1 text-sm leading-6 border cursor-pointer">
             School finding made easy by{" "}
             <span className="font-semibold text-indigo-600">Bestbrain</span>{" "}
           </div>
@@ -42,7 +42,7 @@ const Hero = () => {
 
           <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-2 mt-4 sm:mt-6 lg:mt-8 ">
             <GetStarted />
-            <ToDashboard />
+            {/* <ToDashboard /> */}
           </div>
         </div>
       </div>
