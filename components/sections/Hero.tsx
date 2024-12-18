@@ -26,7 +26,7 @@ const Hero = () => {
           </div>
         </div>
         <div className="text-center flex flex-col items-center">
-          <div className="text-4xl max-sm:max-w-md font-bold tracking-tight sm:text-6xl font-[family-name:var(--font-sora  )]">
+          <div className="text-3xl max-sm:max-w-md font-bold tracking-tight sm:text-6xl font-[family-name:var(--font-sora  )]">
             <h1 className="block font-[family-name:var(--font-sora)]">
               {" "}
               Discover the <span className="text-indigo-500">schools</span>
@@ -35,9 +35,8 @@ const Hero = () => {
               within your reach.
             </h1>
           </div>
-          <p className="mt-6 text-lg  max-sm:max-w-sm leading-8 text-center w-full text-muted-foreground">
-            Tired of searching for schools one by one? This app makes it easy to
-            discover the schools in your area.
+          <p className="mt-6 text-lg max-sm:text-sm  max-sm:max-w-sm leading-8 text-center w-full text-muted-foreground">
+            The ultimate platform to find schools around you. Get started now.
           </p>
 
           <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-2 mt-4 sm:mt-6 lg:mt-8 ">
