@@ -1,5 +1,5 @@
 import { v } from "convex/values";
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 export const createSchool = mutation({
   args: {
     schoolName: v.string(),
@@ -33,5 +33,12 @@ export const createSchool = mutation({
       return "School created";
     }
     return "School already exists";
+  },
+});
+
+export const GetSchools = query({
+  handler: async (ctx) => {
+    const result = await ctx.db.query("schools").collect();
+    return result;
   },
 });

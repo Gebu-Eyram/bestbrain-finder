@@ -85,4 +85,15 @@
   body {
     @apply bg-background text-foreground;
   }
+  td {
+    @apply text-xs;
+  }
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+}
+body {
+  scrollbar-color: rgba(106, 145, 245, 0.104) rgba(2, 67, 231, 0);
 }

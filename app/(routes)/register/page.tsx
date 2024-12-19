@@ -17,13 +17,23 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 const Register = () => {
   const [formData, setFormData] = useState({});
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [address, setAddress] = useState("");
   const [remark, setRemark] = useState("");
-
+  const [open, setOpen] = useState(false);
   const { toast } = useToast();
 
   const handleUserInput = (fieldName: string, value: string) => {
@@ -137,6 +147,32 @@ const Register = () => {
 
   return (
     <div>
+      <Dialog open={open}>
+        <DialogContent className="flex flex-col gap-4 items-center !text-center">
+          <DialogHeader>
+            <DialogTitle className="flex  flex-col items-center gap-4">
+              <div className="p-2  w-fit mx-auto rounded-full border">
+                <Check className="h-6 w-6 text-green-500" />
+              </div>
+              School details submitted
+            </DialogTitle>
+            <DialogDescription className="text-center">
+              You can now go back to map or continue to add more schools.
+            </DialogDescription>
+            <DialogFooter className="border-t w-full mt-4 pt-4 flex  justify-center items-center">
+              <Link href="/map" className="border px-4 p-2 rounded-sm">
+                Go to map
+              </Link>
+              <Link
+                href="/"
+                className="border bg-green-600 px-4 p-2 rounded-sm"
+              >
+                Done
+              </Link>
+            </DialogFooter>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
       <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4">
         <Link href={"/"} className="text-xl flex gap-2 font-semibold">
           <Image
@@ -255,3 +291,4 @@ import { Textarea } from "@/components/ui/textarea";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { Check } from "lucide-react";
