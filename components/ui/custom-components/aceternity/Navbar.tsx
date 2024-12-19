@@ -3,6 +3,7 @@ import React from "react";
 import { FloatingNav } from "@/components/floating-navbar";
 import { IconHome, IconMessage, IconUser } from "@tabler/icons-react";
 import { SparklesIcon } from "lucide-react";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 export function FloatingNavDemo() {
   const navItems = [
     {
@@ -20,6 +21,7 @@ export function FloatingNavDemo() {
       ),
     },
   ];
+
   return (
     <div className="relative  w-full">
       <FloatingNav navItems={navItems} />

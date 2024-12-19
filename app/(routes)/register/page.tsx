@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
 
 const Register = () => {
   const [formData, setFormData] = useState({});
@@ -22,6 +23,8 @@ const Register = () => {
   const [contact, setContact] = useState("");
   const [address, setAddress] = useState("");
   const [remark, setRemark] = useState("");
+
+  const { toast } = useToast();
 
   const handleUserInput = (fieldName: string, value: string) => {
     setFormData((prev) => ({ ...prev, [fieldName]: value }));
@@ -49,6 +52,88 @@ const Register = () => {
   useEffect(() => {
     console.log(formData);
   }, [formData]);
+
+  const { user } = useKindeBrowserClient();
+  const createSchoolApi = useMutation(api.schools.createSchool);
+  const createSchool = async () => {
+    const result = await createSchoolApi({
+      //@ts-ignore
+      schoolName: formData.schoolName,
+
+      //@ts-ignore
+      createdBy: user?.family_name + " " + user?.given_name,
+      //@ts-ignore
+      schoolRegion: formData.schoolRegion,
+      //@ts-ignore
+      schoolContact: formData.schoolContact,
+      //@ts-ignore
+      schoolLocation: formData.schoolLocation,
+      //@ts-ignore
+      schoolRemarks: formData.schoolRemarks,
+    });
+    if (result === "School created") {
+      toast({
+        title: "Success",
+        description: "School created successfully",
+      });
+    } else {
+      toast({
+        title: "Error",
+        description: "Could not create school",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleSubmit = () => {
+    if (user) {
+      //@ts-ignore
+      if (formData.schoolName === undefined) {
+        toast({
+          title: "Error: Invalid school name",
+          description: "Please enter school name",
+          variant: "destructive",
+        });
+        return;
+      }
+      //@ts-ignore
+      if (formData.schoolLocation === undefined) {
+        toast({
+          title: "Error: Invalid school location",
+          description: "Please enter school location",
+          variant: "destructive",
+        });
+        return;
+      }
+      //@ts-ignore
+
+      if (formData.schoolContact === undefined) {
+        toast({
+          title: "Error: Invalid school contact",
+          description: "Please enter school contact",
+          variant: "destructive",
+        });
+        return;
+      }
+      //@ts-ignore
+      if (formData.schoolRemarks === undefined) {
+        toast({
+          title: "Error: Invalid school remarks",
+          description: "Please enter school remarks",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      createSchool();
+    }
+  };
+
+  // useEffect(() => {
+  //   if (user) {
+  //     createSchool();
+  //   }
+  // }, [user]);
 
   return (
     <div>
@@ -98,7 +183,9 @@ const Register = () => {
               }
               placeholder="Location"
             />
-            <Select>
+            <Select
+              onValueChange={(value) => handleUserInput("schoolRegion", value)}
+            >
               <SelectTrigger className="w-full mt-2">
                 <SelectValue placeholder="Select a Region" />
               </SelectTrigger>
@@ -106,13 +193,7 @@ const Register = () => {
                 <SelectGroup>
                   <SelectLabel>Regions</SelectLabel>
                   {Regions.map((region) => (
-                    <SelectItem
-                      value={region}
-                      key={region}
-                      onClick={() => {
-                        handleUserInput("schoolLocation", region);
-                      }}
-                    >
+                    <SelectItem value={region} key={region}>
                       {region}
                     </SelectItem>
                   ))}
@@ -129,7 +210,12 @@ const Register = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Input type="number" placeholder="Number" maxLength={10} />
+            <Input
+              type="number"
+              onChange={(e) => handleUserInput("schoolContact", e.target.value)}
+              placeholder="Number"
+              maxLength={10}
+            />
           </CardContent>
           <CardHeader className="border-t">
             <CardTitle>Remarks</CardTitle>
@@ -143,7 +229,9 @@ const Register = () => {
           </CardContent>
 
           <CardFooter className="border-t px-6 py-4">
-            <Button>Save</Button>
+            <Button className="max-sm:w-full" onClick={handleSubmit}>
+              Save
+            </Button>
           </CardFooter>
         </Card>
       </div>
@@ -164,3 +252,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";

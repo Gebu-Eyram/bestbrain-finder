@@ -9,7 +9,7 @@ export default defineSchema({
   }),
 
   schools: defineTable({
-    marketerName: v.string(),
+    createdBy: v.string(),
     schoolName: v.string(),
     schoolLocation: v.string(),
     schoolRegion: v.string(),
