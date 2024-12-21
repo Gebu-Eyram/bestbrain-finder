@@ -4,17 +4,25 @@ import React from "react";
 import { UserLocationContext } from "../(context)/UserLocationContext";
 import Provider from "../provider";
 import { Toaster } from "@/components/ui/toaster";
+import { SchoolLocationsContext } from "../(context)/SchoolLocationsContext";
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   const [userLocation, setUserLocation] = React.useState({
     lat: 0,
     lng: 0,
   });
+
+  const [schoolLocations, setSchoolLocations] = React.useState<any>([]);
+
   return (
     <div>
       <Provider>
         <UserLocationContext.Provider value={{ userLocation, setUserLocation }}>
-          {children}
+          <SchoolLocationsContext.Provider
+            value={{ schoolLocations, setSchoolLocations }}
+          >
+            {children}
+          </SchoolLocationsContext.Provider>
           <Toaster />
         </UserLocationContext.Provider>
       </Provider>

@@ -34,10 +34,14 @@ import MapComponent from "./MapComponent";
 import React, { useEffect } from "react";
 import axios from "axios";
 import SchoolsList from "./SchoolsList";
+import { SchoolLocationsContext } from "@/app/(context)/SchoolLocationsContext";
 
 export function MapPage() {
-  const [places, setPlaces] = React.useState([]);
-  const [range, setRange] = React.useState(100);
+  const { schoolLocations, setSchoolLocations } = React.useContext(
+    SchoolLocationsContext
+  );
+
+  const [range, setRange] = React.useState(0);
 
   const [location, setLocation] = React.useState({ lat: 0, lng: 0 });
 
@@ -62,12 +66,12 @@ export function MapPage() {
   const GetPlaces = async () => {
     try {
       const response = await axios.get<{ result: any }>(
-        `/api/google-place?radius=${range / 1000}&lat=${location.lat}&lng=${
+        `/api/google-place?radius=${range / 1609.34}&lat=${location.lat}&lng=${
           location.lng
         }`
       );
       //@ts-ignore
-      setPlaces(response.data.results);
+      setSchoolLocations(response.data.results);
     } catch (error) {
       console.log(error);
     }
@@ -87,7 +91,7 @@ export function MapPage() {
             />
             <h1 className="max-sm:hidden">Bestbrain</h1>
           </Link>
-          <DrawerForMap places={places} />
+          <DrawerForMap places={schoolLocations} />
           <div className="ml-auto flex gap-2 items-center">
             <ModeToggle />
             <UserActions />
@@ -95,11 +99,11 @@ export function MapPage() {
         </header>
         <div className="grid lg:grid-cols-[300px_1fr] h-full">
           <div className="max-h-screen max-lg:hidden">
-            <SchoolsList places={places} />
+            <SchoolsList places={schoolLocations} />
           </div>
           <div className="relative  flex h-full min-h-[50vh]  flex-col lg:rounded-xl bg-muted/50  ">
             <MapComponent
-              places={places}
+              places={schoolLocations}
               range={range}
               setRange={(value: any) => setRange(value)}
             />
