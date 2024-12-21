@@ -8,7 +8,11 @@ import { UserLocationContext } from "@/app/(context)/UserLocationContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const SchoolCard = ({ place }: { place: any }) => {
+interface Props {
+  place: any;
+  close?: boolean;
+}
+const SchoolCard = ({ place, close }: Props) => {
   const photoRef = place?.photos ? place?.photos[0]?.photo_reference : "";
   const GOOGLE_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
   const [phoneNumber, setPhoneNumber] = useState<string>("");
@@ -59,7 +63,9 @@ const SchoolCard = ({ place }: { place: any }) => {
   };
 
   return (
-    <div className="flex flex-col border w-full min-w-[195px] bg-background mb-3 rounded-2xl gap-2 p-2 items-center">
+    <div
+      className={`first-letter:flex flex-col border w-full min-w-[195px] bg-background mb-3 rounded-2xl gap-2 p-2 items-center ${close ? "pt-8" : ""}`}
+    >
       {photoRef.length > 0 ? (
         <img
           src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoRef}&key=AIzaSyCjW673RoO9Lan2do3badZaOMfdQcFxn84`}

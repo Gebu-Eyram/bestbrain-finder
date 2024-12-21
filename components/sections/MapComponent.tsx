@@ -8,7 +8,7 @@ import {
   MarkerF,
   OverlayView,
 } from "@react-google-maps/api";
-import { LoaderIcon, MapPin, Settings2 } from "lucide-react";
+import { LoaderIcon, MapPin, Settings2, X } from "lucide-react";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -22,6 +22,7 @@ import { Input } from "../ui/input";
 import axios from "axios";
 import SchoolCard from "./SchoolCard";
 import { UserLocationContext } from "@/app/(context)/UserLocationContext";
+import { SchoolLocationsContext } from "@/app/(context)/SchoolLocationsContext";
 
 const containerStyle = {
   width: "100%",
@@ -29,13 +30,16 @@ const containerStyle = {
 };
 
 interface Props {
-  places: any;
   setRange: any;
   range: any;
 }
 
-const MapComponent = ({ places, setRange, range }: Props) => {
-  const [activePlace, setActivePlace] = React.useState();
+const MapComponent = ({ setRange, range }: Props) => {
+  const { schoolLocations, setSchoolLocations } = React.useContext(
+    SchoolLocationsContext
+  );
+  const [activePlace, setActivePlace] = React.useState<any>("");
+
   const [location, setLocation] = React.useState({ lat: 0, lng: 0 });
   const { userLocation, setUserLocation } = useContext(UserLocationContext);
 
@@ -138,7 +142,7 @@ const MapComponent = ({ places, setRange, range }: Props) => {
             }}
           />
 
-          {places.map((place: any, index: number) => (
+          {schoolLocations.map((place: any, index: number) => (
             <MarkerF
               key={index}
               // @ts-ignore
@@ -155,11 +159,19 @@ const MapComponent = ({ places, setRange, range }: Props) => {
                 mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
               >
                 <div
-                  className={`ml-[-90px] mt-[-270px] ${
+                  className={`ml-[-90px]  relative mt-[-270px] ${
                     place === activePlace ? "" : "hidden"
                   }`}
                 >
-                  <SchoolCard place={place} />
+                  <Button
+                    size={"icon"}
+                    className="absolute "
+                    variant={"ghost"}
+                    onClick={() => setActivePlace("")}
+                  >
+                    <X className="w-4 h-4 " />
+                  </Button>
+                  <SchoolCard close place={place} />
                 </div>
               </OverlayView>
             </MarkerF>

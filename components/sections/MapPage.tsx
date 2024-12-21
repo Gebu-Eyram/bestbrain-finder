@@ -77,6 +77,9 @@ export function MapPage() {
     }
   };
 
+  useEffect(() => {
+    console.log("schoolLocations", schoolLocations);
+  }, [schoolLocations]);
   return (
     <div className="grid h-screen w-full">
       <div className="flex flex-col">
@@ -99,7 +102,7 @@ export function MapPage() {
         </header>
         <div className="grid lg:grid-cols-[300px_1fr] h-full">
           <div className="max-h-screen max-lg:hidden">
-            <SchoolsList places={schoolLocations} />
+            <SchoolsList />
           </div>
           <div className="relative  flex h-full min-h-[50vh]  flex-col lg:rounded-xl bg-muted/50  ">
             <MapComponent
