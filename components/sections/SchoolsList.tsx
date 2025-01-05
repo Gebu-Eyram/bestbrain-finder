@@ -17,18 +17,25 @@ const SchoolsList = ({ schoolLocations }: { schoolLocations: any }) => {
       });
     });
   }, []);
+  const [search, setSearch] = React.useState("");
   return (
     <ScrollArea className="w-full h-full py-4 pb-8 px-2 gap-4  lg:max-h-[calc(90vh-10px)]">
-      <div className="flex items-center justify-between relative px-4">
-        <SearchIcon className="w-4 h-4 absolute left-0 top-0 translate-y-1/2 " />
+      <div className="flex items-center justify-between relative px-4 border rounded-lg bg-background mb-4">
+        <SearchIcon className="w-4 h-4 absolute left-4 top-0 translate-y-1/2 " />
         <Input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
           type="search"
           placeholder="Search for schools"
-          className="w-full border-none outline-none"
+          className="w-full border-none outline-none pl-5 "
         />
       </div>
-      {schoolLocations.length > 0 &&
-        schoolLocations.map((place: any, index: number) => (
+
+      {schoolLocations
+        .filter((place: any) =>
+          place.name.toLowerCase().includes(search.toLowerCase())
+        )
+        .map((place: any, index: number) => (
           <SchoolCard place={place} key={index} />
         ))}
 

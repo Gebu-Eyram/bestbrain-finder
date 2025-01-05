@@ -4,6 +4,7 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 import React, { useContext } from "react";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 interface Props {
   place: any;
@@ -36,6 +37,8 @@ const SchoolCard = ({ place, close }: Props) => {
         "&travelmode=walking"
     );
   };
+
+  const router = useRouter();
 
   const calculateDistance = (
     lat1: number,
@@ -97,6 +100,13 @@ const SchoolCard = ({ place, close }: Props) => {
             </strong>
           </p>
         </div>
+        <Button
+          className="w-full mb-2"
+          variant={"outline"}
+          onClick={() => router.push(`/school/${place.place_id}`)}
+        >
+          Details
+        </Button>
 
         <Button
           className="w-full"
