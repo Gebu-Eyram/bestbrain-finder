@@ -1,10 +1,8 @@
 "use client";
 
 import React from "react";
-import { UserLocationContext } from "../(context)/UserLocationContext";
 import Provider from "../provider";
 import { Toaster } from "@/components/ui/toaster";
-import { SchoolLocationsContext } from "../(context)/SchoolLocationsContext";
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   const [userLocation, setUserLocation] = React.useState({
@@ -23,14 +21,9 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <Provider>
-        <UserLocationContext.Provider value={{ userLocation, setUserLocation }}>
-          <SchoolLocationsContext.Provider
-            value={{ schoolLocations, setSchoolLocations }}
-          >
-            {children}
-          </SchoolLocationsContext.Provider>
-          <Toaster />
-        </UserLocationContext.Provider>
+        {children}
+
+        <Toaster />
       </Provider>
     </div>
   );

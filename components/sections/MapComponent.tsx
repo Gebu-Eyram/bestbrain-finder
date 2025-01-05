@@ -21,9 +21,9 @@ import {
 import { Input } from "../ui/input";
 import axios from "axios";
 import SchoolCard from "./SchoolCard";
-import { UserLocationContext } from "@/app/(context)/UserLocationContext";
-import { SchoolLocationsContext } from "@/app/(context)/SchoolLocationsContext";
+
 import SchoolMarker from "./SchoolMarker";
+import { toast, useToast } from "@/hooks/use-toast";
 
 const containerStyle = {
   width: "100%",
@@ -33,26 +33,15 @@ const containerStyle = {
 interface Props {
   setRange: any;
   range: any;
+  schoolLocations: any;
 }
 
-const MapComponent = ({ setRange, range }: Props) => {
-  const { schoolLocations, setSchoolLocations } = React.useContext(
-    SchoolLocationsContext
-  );
+const MapComponent = ({ setRange, range, schoolLocations }: Props) => {
   const [activePlace, setActivePlace] = React.useState<any>("");
+  const { toast } = useToast();
 
   const [location, setLocation] = React.useState({ lat: 0, lng: 0 });
-  const { userLocation, setUserLocation } = useContext(UserLocationContext);
-
-  useEffect(() => {
-    localStorage.setItem("schoolLocations", JSON.stringify(schoolLocations));
-  }, [schoolLocations]);
-
-  useEffect(() => {
-    if (location.lat !== 0 && location.lng !== 0) {
-      setUserLocation(location);
-    }
-  }, [location]);
+  const [userLocation, setUserLocation] = React.useState({ lat: 0, lng: 0 });
 
   useEffect(() => {
     console.log("User location", userLocation);
@@ -93,6 +82,12 @@ const MapComponent = ({ setRange, range }: Props) => {
       </Dialog>
 
       <LoadScript
+        onLoad={() => {
+          toast({
+            title: "Map loaded",
+            description: "Map has been loaded successfully",
+          });
+        }}
         mapIds={["232a00da9734c406"]}
         loadingElement={
           <div className="h-full w-full flex items-center justify-center">

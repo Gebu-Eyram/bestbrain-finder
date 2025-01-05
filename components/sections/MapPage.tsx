@@ -34,16 +34,22 @@ import MapComponent from "./MapComponent";
 import React, { useEffect } from "react";
 import axios from "axios";
 import SchoolsList from "./SchoolsList";
-import { SchoolLocationsContext } from "@/app/(context)/SchoolLocationsContext";
 
 export function MapPage() {
-  const { schoolLocations, setSchoolLocations } = React.useContext(
-    SchoolLocationsContext
-  );
-
   const [range, setRange] = React.useState(0);
 
   const [location, setLocation] = React.useState({ lat: 0, lng: 0 });
+  const [schoolLocations, setSchoolLocations] = React.useState<any>([]);
+  useEffect(() => {
+    localStorage.setItem("schoolLocations", JSON.stringify(schoolLocations));
+  }, [schoolLocations]);
+
+  useEffect(() => {
+    const storedSchoolLocations = localStorage.getItem("schoolLocations");
+    if (storedSchoolLocations) {
+      setSchoolLocations(JSON.parse(storedSchoolLocations));
+    }
+  }, []);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -77,9 +83,6 @@ export function MapPage() {
     }
   };
 
-  useEffect(() => {
-    console.log("schoolLocations", schoolLocations);
-  }, [schoolLocations]);
   return (
     <div className="grid h-screen w-full">
       <div className="flex flex-col">
@@ -102,10 +105,13 @@ export function MapPage() {
         </header>
         <div className="grid lg:grid-cols-[300px_1fr] h-full">
           <div className="max-h-screen max-lg:hidden">
-            <SchoolsList />
+            {location.lat && location.lng && (
+              <SchoolsList schoolLocations={schoolLocations} />
+            )}
           </div>
           <div className="relative  flex h-full min-h-[50vh]  flex-col lg:rounded-xl bg-muted/50  ">
             <MapComponent
+              schoolLocations={schoolLocations}
               range={range}
               setRange={(value: any) => setRange(value)}
             />

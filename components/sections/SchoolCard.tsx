@@ -4,7 +4,6 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 import React, { useContext } from "react";
 import { Button } from "../ui/button";
-import { UserLocationContext } from "@/app/(context)/UserLocationContext";
 
 interface Props {
   place: any;
@@ -13,8 +12,17 @@ interface Props {
 const SchoolCard = ({ place, close }: Props) => {
   const photoRef = place?.photos ? place?.photos[0]?.photo_reference : "";
   const GOOGLE_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
+  const [userLocation, setUserLocation] = React.useState({ lat: 0, lng: 0 });
 
-  const { userLocation, setUserLocation } = useContext(UserLocationContext);
+  React.useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setUserLocation({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
+  }, []);
+
   const onDirectionClick = () => {
     window.open(
       "https://www.google.com/maps/dir/?api=1&origin=" +
