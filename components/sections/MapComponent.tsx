@@ -44,10 +44,6 @@ const MapComponent = ({ setRange, range, schoolLocations }: Props) => {
   const [userLocation, setUserLocation] = React.useState({ lat: 0, lng: 0 });
 
   useEffect(() => {
-    console.log("User location", userLocation);
-  }, [userLocation]);
-
-  useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       setLocation({
         lat: position.coords.latitude,
@@ -82,12 +78,6 @@ const MapComponent = ({ setRange, range, schoolLocations }: Props) => {
       </Dialog>
 
       <LoadScript
-        onLoad={() => {
-          toast({
-            title: "Map loaded",
-            description: "Map has been loaded successfully",
-          });
-        }}
         mapIds={["232a00da9734c406"]}
         loadingElement={
           <div className="h-full w-full flex items-center justify-center">

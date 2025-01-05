@@ -34,22 +34,16 @@ import MapComponent from "./MapComponent";
 import React, { useEffect } from "react";
 import axios from "axios";
 import SchoolsList from "./SchoolsList";
+import { toast } from "@/hooks/use-toast";
 
 export function MapPage() {
   const [range, setRange] = React.useState(0);
 
   const [location, setLocation] = React.useState({ lat: 0, lng: 0 });
   const [schoolLocations, setSchoolLocations] = React.useState<any>([]);
-  useEffect(() => {
-    localStorage.setItem("schoolLocations", JSON.stringify(schoolLocations));
-  }, [schoolLocations]);
-
-  useEffect(() => {
-    const storedSchoolLocations = localStorage.getItem("schoolLocations");
-    if (storedSchoolLocations) {
-      setSchoolLocations(JSON.parse(storedSchoolLocations));
-    }
-  }, []);
+  // useEffect(() => {
+  //   localStorage.setItem("schoolLocations", JSON.stringify(schoolLocations));
+  // }, [schoolLocations]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -61,11 +55,21 @@ export function MapPage() {
   }, []);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      GetPlaces();
-    }, 2000);
+    const storedSchoolLocations = localStorage.getItem("schoolLocations");
 
-    return () => clearTimeout(timeoutId);
+    if (storedSchoolLocations) {
+      setSchoolLocations(JSON.parse(storedSchoolLocations));
+      toast({
+        title: "Schools loaded",
+        description: "Schools loaded from cache",
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (location.lat !== 0 && location.lng !== 0) {
+      GetPlaces();
+    }
   }, [range]);
 
   useEffect(() => {});
@@ -76,8 +80,22 @@ export function MapPage() {
           location.lng
         }`
       );
+
       //@ts-ignore
       setSchoolLocations(response.data.results);
+      //@ts-ignore
+      if (response.data.results) {
+        localStorage.setItem(
+          "schoolLocations",
+          //@ts-ignore
+          JSON.stringify(response.data.results)
+        );
+
+        toast({
+          title: "Schools stored",
+          description: "Schools stored in cache",
+        });
+      }
     } catch (error) {
       console.log(error);
     }
