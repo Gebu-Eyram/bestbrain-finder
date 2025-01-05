@@ -2,11 +2,9 @@
 import { StarFilledIcon } from "@radix-ui/react-icons";
 import { Star } from "lucide-react";
 import Image from "next/image";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Button } from "../ui/button";
 import { UserLocationContext } from "@/app/(context)/UserLocationContext";
-import axios from "axios";
-import { useRouter } from "next/navigation";
 
 interface Props {
   place: any;
@@ -15,12 +13,8 @@ interface Props {
 const SchoolCard = ({ place, close }: Props) => {
   const photoRef = place?.photos ? place?.photos[0]?.photo_reference : "";
   const GOOGLE_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
-  const [placeId, setPlaceId] = useState("");
-  const [placeDetails, setPlaceDetails] = useState<any | null>(null);
 
-  const { userLocation } = useContext(UserLocationContext);
-
+  const { userLocation, setUserLocation } = useContext(UserLocationContext);
   const onDirectionClick = () => {
     window.open(
       "https://www.google.com/maps/dir/?api=1&origin=" +
@@ -34,8 +28,6 @@ const SchoolCard = ({ place, close }: Props) => {
         "&travelmode=walking"
     );
   };
-
-  const router = useRouter();
 
   const calculateDistance = (
     lat1: number,
@@ -81,11 +73,6 @@ const SchoolCard = ({ place, close }: Props) => {
         <p className="line-clamp-2 text-muted-foreground">
           {place.formatted_address}
         </p>
-        {placeDetails && (
-          <p className="line-clamp-1 text-muted-foreground">
-            Phone: {placeDetails.formatted_phone_number}
-          </p>
-        )}
         <div className=" flex items-center my-2 justify-between">
           <strong>
             {place.opening_hours?.open_now ? "Open Now" : "Closed"}
@@ -106,11 +93,8 @@ const SchoolCard = ({ place, close }: Props) => {
         <Button
           className="w-full"
           variant={"outline"}
-          onClick={() => router.push(`/school/${place.place_id}`)}
+          onClick={onDirectionClick}
         >
-          Details
-        </Button>
-        <Button className="w-full mt-2 " onClick={onDirectionClick}>
           Get Direction
         </Button>
       </div>
