@@ -21,14 +21,9 @@ import {
 import { Input } from "../ui/input";
 import axios from "axios";
 import SchoolCard from "./SchoolCard";
-<<<<<<< HEAD
 
-import SchoolMarker from "./SchoolMarker";
 import { toast, useToast } from "@/hooks/use-toast";
-=======
-import { UserLocationContext } from "@/app/(context)/UserLocationContext";
-import { SchoolLocationsContext } from "@/app/(context)/SchoolLocationsContext";
->>>>>>> parent of 15cc1d7 (Add SchoolMarker component and implement localStorage for schoolLocations in layout)
+import SchoolMarker from "./SchoolMarker";
 
 const containerStyle = {
   width: "100%",
@@ -42,14 +37,11 @@ interface Props {
 }
 
 const MapComponent = ({ setRange, range, schoolLocations }: Props) => {
-  const [activePlace, setActivePlace] = React.useState<any>("");
+  const [activePlace, setActivePlace] = React.useState<any>(null);
+  const [userLocation, setUserLocation] = React.useState({ lat: 0, lng: 0 });
   const { toast } = useToast();
 
   const [location, setLocation] = React.useState({ lat: 0, lng: 0 });
-<<<<<<< HEAD
-  const [userLocation, setUserLocation] = React.useState({ lat: 0, lng: 0 });
-=======
-  const { userLocation, setUserLocation } = useContext(UserLocationContext);
 
   useEffect(() => {
     if (location.lat !== 0 && location.lng !== 0) {
@@ -60,7 +52,6 @@ const MapComponent = ({ setRange, range, schoolLocations }: Props) => {
   useEffect(() => {
     console.log("User location", userLocation);
   }, [userLocation]);
->>>>>>> parent of 15cc1d7 (Add SchoolMarker component and implement localStorage for schoolLocations in layout)
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -152,38 +143,11 @@ const MapComponent = ({ setRange, range, schoolLocations }: Props) => {
           />
 
           {schoolLocations.map((place: any, index: number) => (
-            <MarkerF
-              key={index}
-              // @ts-ignore
-              position={place.geometry.location}
-              onClick={() => setActivePlace(place)}
-              icon={{
-                url: "/school.png",
-                //@ts-ignore
-                scaledSize: { width: 25, height: 25 },
-              }}
-            >
-              <OverlayView
-                position={place.geometry.location}
-                mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-              >
-                <div
-                  className={`ml-[-90px]  relative mt-[-270px] ${
-                    place === activePlace ? "" : "hidden"
-                  }`}
-                >
-                  <Button
-                    size={"icon"}
-                    className="absolute "
-                    variant={"ghost"}
-                    onClick={() => setActivePlace("")}
-                  >
-                    <X className="w-4 h-4 " />
-                  </Button>
-                  <SchoolCard close place={place} />
-                </div>
-              </OverlayView>
-            </MarkerF>
+            <SchoolMarker
+              place={place}
+              activePlace={activePlace}
+              setActivePlace={setActivePlace}
+            />
           ))}
         </GoogleMap>
       </LoadScript>

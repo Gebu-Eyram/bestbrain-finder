@@ -129,11 +129,7 @@ export function MapPage() {
           </div>
           <div className="relative  flex h-full min-h-[50vh]  flex-col lg:rounded-xl bg-muted/50  ">
             <MapComponent
-<<<<<<< HEAD
               schoolLocations={schoolLocations}
-=======
-              places={schoolLocations}
->>>>>>> parent of 90776a8 (Remove unused 'places' prop from MapComponent in MapPage)
               range={range}
               setRange={(value: any) => setRange(value)}
             />
