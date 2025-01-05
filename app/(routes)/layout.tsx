@@ -11,12 +11,6 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   });
 
   const [schoolLocations, setSchoolLocations] = React.useState<any>([]);
-  React.useEffect(() => {
-    const storedSchoolLocations = localStorage.getItem("schoolLocations");
-    if (storedSchoolLocations) {
-      setSchoolLocations(JSON.parse(storedSchoolLocations));
-    }
-  }, []);
 
   return (
     <div>
